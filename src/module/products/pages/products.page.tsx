@@ -5,13 +5,15 @@ import { Tabs } from "../../../core/components";
 import { ProductCard } from "../components";
 import { mockListProducts } from "../mock-data";
 import "./index.css";
+import { Link, useNavigate } from "react-router-dom";
 
 export const ProductsPage = () => {
+  const navigate = useNavigate();
+
   const [tabs, setTabs] = useState<"m" | "w">("m");
   return (
     <div>
       <Tabs
-        style={{ marginTop: 20 }}
         items={tabGendeOptions}
         onChange={(key: any) => setTabs(key)}
         value={tabs}
@@ -19,7 +21,11 @@ export const ProductsPage = () => {
       <div className="list-products">
         {mockListProducts.map((it) => (
           <ProductCard
-            onClick={() => {}}
+            onClick={() =>
+              navigate(`/product-detailed/${it.id}`, {
+                state: { product: it },
+              })
+            }
             key={it.id}
             imgUrl={it.imgUrl}
             name={it.name}
