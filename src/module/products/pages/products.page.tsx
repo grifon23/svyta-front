@@ -14,6 +14,7 @@ export const ProductsPage = () => {
         onChange={(key: any) => setTabs(key)}
         value={tabs}
       />
+      <p>Products</p>
     </div>
   );
 };
