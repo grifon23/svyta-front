@@ -6,6 +6,7 @@ const sizes = {
   md: 14,
   lg: 18,
   xl: 22,
+  x2: 35,
 };
 
 interface IProps {

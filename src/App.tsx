@@ -16,7 +16,10 @@ function App() {
       <Routes>
         <Route path="/" element={<PageLayout />}>
           <Route index element={<ProductsPage />} />
-          <Route path="product-detailed" element={<DetailedProductPage />} />
+          <Route
+            path="product-detailed/:id"
+            element={<DetailedProductPage />}
+          />
           <Route path="order" element={<Order />} />
           <Route path="contacts" element={<Contacts />} />
         </Route>
