@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { Button } from "../../../core";
+import { Button } from "../../../core/components/button";
 import { InfoProductAtom } from "../atoms";
 
 export const DetailedProductPage = () => {
