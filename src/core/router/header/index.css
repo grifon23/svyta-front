@@ -1,23 +1,24 @@
 .header-container {
-  background-color: black;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 5px 30px;
+    background-color: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    height: 60px;
 }
 
 .nav-container {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: space-around;
-  max-width: 80%;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 80%;
 }
 
 .nav-link {
-  font-weight: 500;
-  font-size: 16px;
-  border-radius: 8px;
-  padding: 0px 10px;
-
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 0px 10px;
+    height: 25px;
 }

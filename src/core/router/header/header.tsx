@@ -1,11 +1,10 @@
-import { Header } from "antd/es/layout/layout";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { LinkHeaderAtom } from "./atom/link";
 import "./index.css";
 import { ReactSVG } from "react-svg";
 
-export const HeaderPage = () => {
+export const Header = () => {
   return (
     <div className="header-container">
       <Link style={{ color: "white" }} to={"/"}>
