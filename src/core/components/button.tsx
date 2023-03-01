@@ -7,6 +7,7 @@ interface IProps {
   style?: CSSProperties;
   mode?: "primary" | "default";
   colorLabel?: string;
+  onClick?: () => void;
 }
 export const Button: FC<IProps> = ({
   background = "green",
@@ -14,6 +15,7 @@ export const Button: FC<IProps> = ({
   label,
   mode = "default",
   colorLabel = "black",
+  onClick,
 }) => {
   const styleMode = {
     primary: {
@@ -27,7 +29,10 @@ export const Button: FC<IProps> = ({
     },
   };
   return (
-    <div style={{ ...styles.container, ...style, ...styleMode[mode] }}>
+    <div
+      onClick={onClick}
+      style={{ ...styles.container, ...style, ...styleMode[mode] }}
+    >
       <p>{label}</p>
     </div>
   );
@@ -35,8 +40,12 @@ export const Button: FC<IProps> = ({
 
 const styles = createStyleSheet({
   container: {
-    padding: "15px",
+    padding: "10px",
     borderRadius: 5,
     cursor: "pointer",
+    minWidth: 130,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
