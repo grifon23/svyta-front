@@ -17,8 +17,8 @@ export const ProductCard: FC<IProps> = ({
   onClick,
 }) => {
   return (
-    <div onClick={onClick}>
-      <img src={imgUrl} style={{ height: 550, width: "100%" }} alt="" />
+    <div onClick={onClick} style={{ margin: "20px " }}>
+      <img src={imgUrl} style={{ height: 550, width: 400 }} alt="" />
 
       <div>
         <div style={{ ...styles.containerBottom, margin: "10px 0px" }}>
