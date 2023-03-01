@@ -1,0 +1,21 @@
+.base-input {
+    padding: 10px
+}
+
+.base-label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #1B1B1B;
+    margin-bottom: 8px;
+    display: inline-block
+}
+
+.ant-picker-large .ant-picker-input {
+    width: 100%!important
+}
+
+.ant-select-selection-overflow {
+    max-height: 40px;
+    overflow-y: auto;
+}

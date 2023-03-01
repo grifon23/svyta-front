@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { tabGendeOptions } from "../config/tabs-gender.config";
-import { DrawerModal, Tabs } from "../../../core/components";
+import { BaseInput, DrawerModal, Tabs } from "../../../core/components";
 import { ProductCard } from "../components";
 import { mockListProducts } from "../mock-data";
 import "./index.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../../core/components/button";
 
+interface IForm {
+  name: string;
+  description: string;
+  price: string;
+  sizes: string;
+  count: string;
+}
 export const ProductsPage = () => {
   const navigate = useNavigate();
 
   const [tabs, setTabs] = useState<"m" | "w">("m");
   const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
@@ -22,6 +30,7 @@ export const ProductsPage = () => {
     setOpen(false);
   };
 
+  console.log("input", input);
   return (
     <div>
       <div
@@ -36,7 +45,7 @@ export const ProductsPage = () => {
           onChange={(key: any) => setTabs(key)}
           value={tabs}
         />
-        <Button label="Створити позицію" onClick={() => setOpen(true)} />
+        <Button label="Створити позицію" onClick={showDrawer} />
       </div>
 
       <div className="list-products">
@@ -55,7 +64,25 @@ export const ProductsPage = () => {
           />
         ))}
       </div>
-      <DrawerModal onClose={onClose} open={open} />
+      <DrawerModal
+        onClose={onClose}
+        open={open}
+        extraTop={
+          <div style={{ display: "flex", width: "50%" }}>
+            <Button label="Submit" style={{ marginRight: 20 }} />
+            <Button label="Cancel" />
+          </div>
+        }
+      >
+        <BaseInput
+          //error={form.errors.name}
+          style={{ marginBottom: "16px" }}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Name position"
+          label="Name position"
+        />
+      </DrawerModal>
     </div>
   );
 };
