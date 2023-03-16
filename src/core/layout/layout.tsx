@@ -5,7 +5,7 @@ import { Header } from "../router/header/header";
 
 export const PageLayout = () => {
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ minHeight: "100%" }}>
       <Header />
       <div style={{ padding: "40px 55px" }}>
         <Outlet />

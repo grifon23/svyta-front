@@ -14,7 +14,7 @@ export const InfoProductAtom: FC<IProps> = ({ name, size, price }) => {
       </Txt>
 
       <Txt mod="x2" weight="700">
-        {price}
+        {`Ціна: ${price} грн`}
       </Txt>
       <div style={{ display: "flex", alignItems: "center", marginTop: 20 }}>
         <Txt mod="lg" color="gray" style={{ marginRight: 10 }}>

@@ -7,7 +7,7 @@ interface IProps {
   style?: CSSProperties;
   mode?: "primary" | "default";
   colorLabel?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 export const Button: FC<IProps> = ({
   background = "green",
@@ -29,12 +29,13 @@ export const Button: FC<IProps> = ({
     },
   };
   return (
-    <div
+    <button
+      type="submit"
       onClick={onClick}
       style={{ ...styles.container, ...style, ...styleMode[mode] }}
     >
       <p>{label}</p>
-    </div>
+    </button>
   );
 };
 

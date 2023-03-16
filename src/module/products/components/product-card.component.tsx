@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { createStyleSheet, Txt } from "../../../core";
 
 interface IProps {
-  imgUrl: string;
+  imgUrl?: string;
   name: string;
   size: string;
   price: string;
@@ -35,7 +35,7 @@ export const ProductCard: FC<IProps> = ({
           </Txt>
 
           <Txt mod="md" weight="700">
-            {price}
+            {`Ціна: ${price} грн`}
           </Txt>
         </div>
       </div>
