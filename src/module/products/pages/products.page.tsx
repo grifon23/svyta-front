@@ -12,7 +12,7 @@ import { mockImagesProductst } from "../mock-data";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../core/components/button";
-import { getProductsReq } from "../../../api/product";
+import { getProductsReq, storeProductReq } from "../../../api/product";
 import { IProduct } from "../interfaces/product";
 
 interface IForm {
@@ -40,7 +40,6 @@ export const ProductsPage = () => {
         return { ...el, imgUrl: mockImagesProductst[index].imgUrl };
       });
       setProducts(templ);
-      console.log("data", templ);
     } catch (error) {
       console.log("error", error);
     }
@@ -51,8 +50,9 @@ export const ProductsPage = () => {
     getProducts();
   }, []);
 
-  const createProduct = async (data: IProduct) => {
+  const createProduct = async (data: any) => {
     try {
+      await storeProductReq(data);
       console.log("create product", data);
     } catch (error) {}
   };

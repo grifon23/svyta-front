@@ -8,6 +8,7 @@ interface IProps {
   mode?: "primary" | "default";
   colorLabel?: string;
   onClick?: (e: any) => void;
+  type?: "submit" | "button";
 }
 export const Button: FC<IProps> = ({
   background = "green",
@@ -16,6 +17,7 @@ export const Button: FC<IProps> = ({
   mode = "default",
   colorLabel = "black",
   onClick,
+  type = "button",
 }) => {
   const styleMode = {
     primary: {
@@ -26,11 +28,12 @@ export const Button: FC<IProps> = ({
     default: {
       color: colorLabel,
       border: "1px solid green",
+      backgroundColor: "#fff",
     },
   };
   return (
     <button
-      type="submit"
+      type={type}
       onClick={onClick}
       style={{ ...styles.container, ...style, ...styleMode[mode] }}
     >

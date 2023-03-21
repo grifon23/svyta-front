@@ -6,22 +6,14 @@ interface IProps {
   open: boolean;
   onClose: () => void;
   children: JSX.Element | JSX.Element[];
-  extraTop?: JSX.Element;
 }
-export const DrawerModal: FC<IProps> = ({
-  open,
-  onClose,
-  children,
-  extraTop,
-}) => {
+export const DrawerModal: FC<IProps> = ({ open, onClose, children }) => {
   return (
     <Drawer
-      title="Create a new position"
       width={720}
       onClose={onClose}
       open={open}
       bodyStyle={{ paddingBottom: 80 }}
-      extra={extraTop}
     >
       {children}
     </Drawer>

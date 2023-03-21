@@ -5,12 +5,12 @@ import "../../css/components/base-input.css";
 import { ErrorRow } from "./elements";
 
 interface IProps {
-  //value: string;
-  //onChange?: (e: any) => void;
-  //error?: string;
+  value?: string;
+  onChange?: (e: any) => void;
+  error?: string;
   style?: any;
-  //type?: "email" | "number" | "password" | "text";
-  //placeholder?: string;
+  type?: "email" | "number" | "password" | "text";
+  placeholder?: string;
   width?: any;
   label: string;
   texterea?: boolean;
@@ -33,26 +33,22 @@ export const BaseInput: FC<IProps> = ({
           disabled={disabled}
           style={{
             width: width,
-            height: 90,
+            minHeight: "100px",
             padding: 10,
             //border: error ? "1px solid red" : "",
           }}
           {...props}
-          //placeholder={props.placeholder}
+          placeholder={props.placeholder}
           //onChange={props.onChange}
-          className="base-input"
+
           //value={value}
         />
       ) : (
         <Input
           {...props}
-          //type={type}
-          //disabled={disabled}
+          disabled={disabled}
           //style={{ border: error ? "1px solid red" : "" }}
-          //placeholder={placeholder}
-          //onChange={onChange}
           className="base-input"
-          //value={value}
         />
       )}
 
