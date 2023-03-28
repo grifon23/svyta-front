@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import "../../../css/components/errors.css";
 interface IProps {
-  error: string;
+  error?: string;
 }
 export const ErrorRow: FC<IProps> = ({ error }) => {
   return (

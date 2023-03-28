@@ -6,10 +6,6 @@ import { PageLayout } from "./core";
 import { Order } from "./module/orders";
 import { DetailedProductPage, ProductsPage } from "./module/products";
 
-
-
-
-
 function App() {
   return (
     <div className="App">

@@ -5,5 +5,5 @@ export interface IProduct {
   price: string;
   description: string;
   published: boolean;
-  id?: string;
+  id: string;
 }

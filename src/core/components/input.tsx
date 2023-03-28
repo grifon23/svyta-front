@@ -24,6 +24,7 @@ export const BaseInput: FC<IProps> = ({
   style,
   ...props
 }) => {
+  console.log("value", props.value);
   return (
     <div style={{ width: width, ...style }} className={`input__wrapper `}>
       <label className="base-label">{label}</label>
@@ -52,7 +53,7 @@ export const BaseInput: FC<IProps> = ({
         />
       )}
 
-      {/*{error && <ErrorRow error={error} />}*/}
+      {props.error && <ErrorRow error={props.error} />}
     </div>
   );
 };

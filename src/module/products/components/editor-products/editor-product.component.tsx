@@ -1,42 +1,58 @@
-import { Input } from "antd";
-import React, { FC, useState } from "react";
+import { FC, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { BaseInput, Button, DrawerModal } from "../../../../core";
+import { FIELD_IS_REQUIRED } from "../../../../typing";
+import { ICreateProductForm } from "../../interfaces/create-product-form.interfaces";
 import { IProduct } from "../../interfaces/product";
 
 interface IProps {
   isShow: boolean;
   onClose: () => void;
   submitForm: (data: any) => void;
+  defaultData?: IProduct;
+  updateProduct: (id: number, data: ICreateProductForm) => void;
 }
 export const DrawerEditorProduct: FC<IProps> = ({
   isShow,
   onClose,
   submitForm,
+  defaultData,
+  updateProduct,
 }) => {
   const {
-    register,
     handleSubmit,
     control,
-    formState: { isDirty, dirtyFields },
     setValue,
+    formState: { errors },
     reset,
-  } = useForm({
-    defaultValues: {
-      name: "",
-      sizes: "",
-      description: "",
-      price: "",
-      published: false,
-    },
+  } = useForm<ICreateProductForm>({
+    defaultValues: { description: defaultData?.description },
   });
 
   const onSubmitForm = (data: any) => {
-    submitForm(data);
+    if (defaultData?.id) {
+      updateProduct(+defaultData.id, data);
+    } else {
+      submitForm(data);
+    }
     reset();
   };
+
+  useEffect(() => {
+    if (!defaultData) return;
+    setValue("name", defaultData.name);
+    setValue("price", defaultData.price);
+    setValue("size", defaultData.size);
+    setValue("description", defaultData.description);
+  }, [defaultData, setValue]);
+
+  const hideDrawer = () => {
+    onClose();
+    reset();
+  };
+
   return (
-    <DrawerModal onClose={onClose} open={isShow}>
+    <DrawerModal onClose={hideDrawer} open={isShow}>
       <form
         onSubmit={handleSubmit(onSubmitForm)}
         style={{
@@ -47,8 +63,14 @@ export const DrawerEditorProduct: FC<IProps> = ({
       >
         <div>
           <Controller
+            rules={{ required: FIELD_IS_REQUIRED }}
             render={({ field }) => (
-              <BaseInput label="Product name" placeholder="Name" {...field} />
+              <BaseInput
+                label="Product name"
+                placeholder="Name"
+                {...field}
+                error={errors.name?.message}
+              />
             )}
             name="name"
             control={control}
@@ -62,8 +84,10 @@ export const DrawerEditorProduct: FC<IProps> = ({
             }}
           >
             <Controller
+              rules={{ required: FIELD_IS_REQUIRED }}
               render={({ field }) => (
                 <BaseInput
+                  error={errors.price?.message}
                   width={"45%"}
                   label="Price"
                   type="number"
@@ -76,24 +100,28 @@ export const DrawerEditorProduct: FC<IProps> = ({
               defaultValue=""
             />
             <Controller
+              rules={{ required: FIELD_IS_REQUIRED }}
               render={({ field }) => (
                 <BaseInput
+                  error={errors.size?.message}
                   label="Sizes"
                   width={"45%"}
                   placeholder="sizes"
                   {...field}
                 />
               )}
-              name="sizes"
+              name="size"
               control={control}
               defaultValue=""
             />
           </div>
 
           <Controller
+            rules={{ required: FIELD_IS_REQUIRED }}
             render={({ field }) => (
               <BaseInput
                 texterea
+                error={errors.description?.message}
                 label="About product"
                 placeholder="About product ..."
                 {...field}
