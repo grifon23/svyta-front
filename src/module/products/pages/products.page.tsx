@@ -17,14 +17,12 @@ import {
 import { IProduct } from "../interfaces/product";
 import { message } from "antd";
 import _ from "lodash";
-import { ICreateProductForm } from "../interfaces/create-product-form.interfaces";
 
 export const ProductsPage = () => {
   const navigate = useNavigate();
 
   const [products, setProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingOne, setIsLoadingOne] = useState(true);
   const [tabs, setTabs] = useState<"m" | "w">("m");
   const [open, setOpen] = useState(false);
   const [defaultData, setDefaultData] = useState<IProduct>();
@@ -47,13 +45,11 @@ export const ProductsPage = () => {
     getProducts();
   }, []);
   const getOneProduct = async (id: number) => {
-    setIsLoadingOne(true);
     try {
       const { data } = await getOneProductReq(id);
 
       setDefaultData(data);
     } catch (error) {}
-    setIsLoadingOne(false);
   };
 
   useEffect(() => {
@@ -65,7 +61,8 @@ export const ProductsPage = () => {
       await storeProductReq(data);
       console.log("create product", data);
       message.success("Success created product");
-      setTimeout(() => onClose(), 700);
+      getProducts();
+      setTimeout(() => onClose(), 500);
     } catch (error) {}
   };
 
@@ -73,7 +70,8 @@ export const ProductsPage = () => {
     try {
       await updateProductReq(id, data);
       message.success("Success update product");
-      setTimeout(() => onClose(), 700);
+      getProducts();
+      setTimeout(() => onClose(), 500);
     } catch (error) {}
   };
 
